@@ -8,11 +8,6 @@ class Expression():
     """The EasyRex representation of a regular expression.
 
     defines operations between Expressions and strings.
-
-    Attributes
-    ----------
-    name : str 
-
     """
 
     # word=Expression("\w+")
@@ -74,7 +69,7 @@ class Expression():
             if name=="":
                 return Expression("(%s)"%a.get_expression(),grouped=True) 
             return Expression("(?P<%s>%s)"%(name,a.get_expression()),grouped=True)
-        raise Exception("exprected name type to be None or str")
+        raise ValueError("exprected name type to be None or str")
 
     @enforce_expression_parameters
     def repeat(self,method:Literal["greedy","non_greedy","possessive"]="greedy"):

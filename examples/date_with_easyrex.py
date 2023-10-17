@@ -1,4 +1,8 @@
-from Easyrex import *
+"""Example of utilization of EasyRex for the creation of a date regular expression.
+"""
+
+
+from Easyrex import Utils,Expression
 
 
 # To create a regular expression for a date with Easyrex,
