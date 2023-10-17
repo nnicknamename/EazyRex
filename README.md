@@ -1,5 +1,5 @@
   
-EasyRex is the the reaction to the complicated nature of regular expressions. Throughout my use of them, I developed small and separate tools that helped me in both the development and the debugging of complex regular expressions. The main issues I faced were the following:
+EasyRex is the reaction to the complicated nature of regular expressions. Throughout my use of them, I developed small and separate tools that helped me in both the development and the debugging of complex regular expressions. The main issues I faced were the following:
 
 - The difficulty of editing and using large regular expressions, especially when considering the forced horizontal structure.  
 - Susceptibility to typos and misspells.  
