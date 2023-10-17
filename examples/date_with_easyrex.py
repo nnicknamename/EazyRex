@@ -10,4 +10,6 @@ if __name__=="__main__":
     date=Utils.digits+" "+Utils.word+" "+Utils.digits
     print(date)
 
-    # we can do the same thing using 
+    # we can do the same thing using custom expressions and even a mix of strings and expressions
+    date=Expression("\d+")+" \w+ "+Utils.digits
+    print(date)
