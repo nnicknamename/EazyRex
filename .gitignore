@@ -106,3 +106,4 @@ GitHub.sublime-settings
 .history
 
 dev/
+*.ipynb
