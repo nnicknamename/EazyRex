@@ -54,7 +54,7 @@ class Expression():
         return self.base_expression
 
     @staticmethod
-    def group(a,name=None):
+    def group(a,name=None)->str:
         """Puts an Expression in a group
         
         Keyword arguments:
@@ -71,23 +71,35 @@ class Expression():
             return Expression("(?P<%s>%s)"%(name,a.get_expression()),grouped=True)
         raise ValueError("exprected name type to be None or str")
 
-    @enforce_expression_parameters
-    def repeat(self,method:Literal["greedy","non_greedy","possessive"]="greedy"):
+
+
+    #@enforce_expression_parameters
+    def repeat(self,repeat_range:Literal["+","*"] or int or tuple,method:Literal["greedy","Lazy","possessive"]="greedy"):
         """Repeats the Expression based on the chosen method
         
         Keyword arguments:
         method -- the method used for the repitition.
         Return: the resulting Expression.
+        repeat_range: represents the number of times a repitition will be accepted
         """
-
+        
+        if isinstance(repeat_range,int):
+            repitition=str(repeat_range)
+            modifier=r"{%s}"%repitition        
+        elif isinstance(repeat_range,tuple):
+            assert len(repeat_range)==2,"tuple values of repeat_range should be of length 2"
+            modifier=r"{%s,%s}"%repeat_range
+        else:
+            assert repeat_range in ["+","*"],"repeat range not recognized"
+            modifier=repeat_range
         if method=="greedy":
-            return Expression(self.group(self.get_expression())+"*")
-        if method=="non_greedy":
-            return Expression(self.group(self.get_expression())+"*?")
+            return Expression(self.group(self.get_expression())+modifier)
+        if method=="Lazy":
+            return Expression(self.group(self.get_expression())+modifier+"?")
         if method=="possessive":
-            return Expression(self.group(self.get_expression())+"*+")
+            return Expression(self.group(self.get_expression())+modifier+"+")
 
-        return self
+
 
     @enforce_expression_parameters
     def __add__(self, b):
